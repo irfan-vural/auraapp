@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct MainView: View {
-    var body: some View {
-        LoginView()
+    @State var viewModel = MainViewViewModel()
+
+        var body: some View {
+            if viewModel.showMainApp {
+               
+                TodoListView()
+            } else {
+                LoginView(mainVM: viewModel)
+            }
     }
 }
 

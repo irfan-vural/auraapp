@@ -14,10 +14,9 @@ struct LoginView: View {
     
     @State var viewModel = LoginViewViewModel()
     
-    
-    var isFormValid: Bool {
-        return !viewModel.email.isEmpty && !viewModel.password.isEmpty
-    }
+    @Bindable var mainVM: MainViewViewModel
+
+ 
     
     var body: some View {
         NavigationStack {
@@ -49,7 +48,8 @@ struct LoginView: View {
                     // Giriş Butonu
                     CustomButton(title: "Sign in", action: {
                         viewModel.login()
-                    }, isFormValid: isFormValid)
+                    })
+                    
                     Spacer() // Form ile footer'ı birbirinden uzaklaştırır
                     
                     // --- FOOTER ---
@@ -59,19 +59,22 @@ struct LoginView: View {
                             .font(.callout)
                         
                         // Register sayfasına yönlendirme linki
-                        NavigationLink(destination: RegisterView()) {
+                        NavigationLink(destination: RegisterView(
+                            mainVM: mainVM
+                        )) {
                             Text("Create an Account")
                                 .font(.headline)
                                 .foregroundColor(.blue)
                         }
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom , 30)
                 }
+                .padding()
                 .ignoresSafeArea(.keyboard) // Klavye açıldığında tasarımın bozulmasını engeller
             }
         }
     }}
 
 #Preview {
-    LoginView()
+    LoginView(mainVM:   MainViewViewModel())
 }

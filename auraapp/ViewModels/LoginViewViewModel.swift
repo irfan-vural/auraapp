@@ -16,7 +16,7 @@ class LoginViewViewModel {
         guard validate() else { return }
     }
     
-    func validate() -> Bool{
+  private  func validate() -> Bool{
         
             errorMessage = ""
             guard !email.trimmingCharacters(in: .whitespaces).isEmpty, !password.trimmingCharacters(in: .whitespaces).isEmpty else{
@@ -28,6 +28,10 @@ class LoginViewViewModel {
                 errorMessage = "Invalid email"
                 return false
             }
+      guard password.count >= 6 else {
+          errorMessage = "Password must be at least 6 characters"
+          return false
+      }
         
         return true
     }

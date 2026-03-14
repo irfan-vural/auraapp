@@ -10,15 +10,8 @@ import SwiftUI
 
 struct RegisterView: View {
     // Form verilerini tutacağımız state değişkenleri
-    @State private var fullName = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
-    
-    // Şifrelerin eşleşip eşleşmediğini kontrol eden hesaplanmış özellik
-    var isFormValid: Bool {
-        return !fullName.isEmpty && !email.isEmpty && !password.isEmpty && password == confirmPassword
-    }
+@State var viewModel = RegisterViewViewModel()
+@Bindable var mainVM: MainViewViewModel
 
     var body: some View {
         VStack(spacing: 30) {
@@ -38,15 +31,22 @@ struct RegisterView: View {
             
             // --- REGISTER FORMU ---
             VStack(spacing: 16) {
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .foregroundStyle(.red)
+                        .font(.caption)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
                 // Ad Soyad Alanı
-                TextField("Full Name", text: $fullName)
+                TextField("Full Name", text: $viewModel.name)
                     .autocorrectionDisabled()
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(14)
                 
                 // Email Alanı
-                TextField("Email Address", text: $email)
+                TextField("Email Address", text: $viewModel.email)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
                     .padding()
@@ -54,39 +54,42 @@ struct RegisterView: View {
                     .cornerRadius(14)
                 
                 // Şifre Alanı
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $viewModel.password)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(14)
                 
                 // Şifre Tekrar Alanı
-                SecureField("Confirm Password", text: $confirmPassword)
+                SecureField("Confirm Password", text: $viewModel.confirmPasssword)
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(14)
-                    // Şifreler uyuşmazsa hafif kırmızı bir uyarı verebiliriz
+                    // Şifreler uyuşmazsa hafif kırmızı bir
                     .overlay(
                         RoundedRectangle(cornerRadius: 14)
-                            .stroke(password != confirmPassword && !confirmPassword.isEmpty ? Color.red.opacity(0.5) : Color.clear, lineWidth: 1)
+                            .stroke(viewModel.password != viewModel.confirmPasssword && !viewModel.confirmPasssword.isEmpty ? Color.red.opacity(0.5) : Color.clear, lineWidth: 1)
                     )
             }
             .padding(.horizontal, 30)
             
             // --- KAYIT OL BUTONU ---
             
-            CustomButton(title: "Create Account", action: {
-            }, isFormValid: isFormValid)
+             CustomButton(title: "Create Account", action: {
+                 mainVM.isRegistering = true
+                 viewModel.register()
+             }).padding(.horizontal,30)
             Spacer()
             
             // --- FOOTER ---
-            // Zaten NavigationStack içinde olduğumuz için "Geri Dön" mantığıyla çalışacak
             HStack(spacing: 8) {
                 Text("Already have an account?")
                     .foregroundColor(.gray)
                     .font(.callout)
                 
-                // Register sayfasına yönlendirme linki
-                NavigationLink(destination: LoginView()) {
+                // Login sayfasına yönlendirme linki
+                NavigationLink(destination: LoginView(
+                    mainVM: mainVM
+                )) {
                     Text("Login")
                         .font(.headline)
                         .foregroundColor(.blue)
@@ -94,13 +97,20 @@ struct RegisterView: View {
             }
             .padding(.bottom, 20)
         }
-        .navigationBarTitleDisplayMode(.inline) // Tepedeki boşluğu küçültür
+        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea(.keyboard)
+        .alert("Succesful!", isPresented: $viewModel.showSuccessAlert) {
+            Button("Let's Start", role: .cancel) {
+                mainVM.isRegistering = false
+            }
+        } message: {
+            Text("You Are All Set! Welcome To AURA").bold()
+        }
     }
 }
 
 #Preview {
     NavigationStack {
-        RegisterView()
+        RegisterView(mainVM : MainViewViewModel())
     }
 }
