@@ -40,6 +40,7 @@ struct RegisterView: View {
             VStack(spacing: 16) {
                 // Ad Soyad Alanı
                 TextField("Full Name", text: $fullName)
+                    .autocorrectionDisabled()
                     .padding()
                     .background(Color(.systemGray6))
                     .cornerRadius(14)
@@ -72,24 +73,9 @@ struct RegisterView: View {
             .padding(.horizontal, 30)
             
             // --- KAYIT OL BUTONU ---
-            Button(action: {
-                // TODO: Firebase Auth kayıt (createUser) işlemleri buraya gelecek
-                print("Kayıt oluşturuluyor... Ad: \(fullName), Email: \(email)")
-            }) {
-                Text("Create Account")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    // Form geçerliyse mavi, değilse soluk gri renk
-                    .background(isFormValid ? Color.blue : Color.blue.opacity(0.4))
-                    .cornerRadius(14)
-                    .shadow(color: isFormValid ? .blue.opacity(0.3) : .clear, radius: 8, x: 0, y: 4)
-            }
-            .disabled(!isFormValid) // Form geçersizse butona tıklanamaz
-            .padding(.horizontal, 30)
-            .padding(.top, 10)
             
+            CustomButton(title: "Create Account", action: {
+            }, isFormValid: isFormValid)
             Spacer()
             
             // --- FOOTER ---
