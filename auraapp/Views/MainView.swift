@@ -13,7 +13,7 @@ struct MainView: View {
         var body: some View {
             if viewModel.showMainApp {
                
-                TodoListView()
+                MainTabView(mainVM: viewModel)
             } else {
                 LoginView(mainVM: viewModel)
             }
