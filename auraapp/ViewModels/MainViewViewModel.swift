@@ -16,7 +16,7 @@ class MainViewViewModel{
     private var handler: AuthStateDidChangeListenerHandle?
     var isRegistering = false // İşte bu bizim frenimiz kanka
     init() {
-       // try? Auth.auth().signOut()
+       try? Auth.auth().signOut()
         
         self.handler = Auth.auth().addStateDidChangeListener { [weak self] _, user in
         DispatchQueue.main.async {
