@@ -37,9 +37,22 @@
 		28A5DCEA2F62DF0F007332E1 /* auraapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = auraapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2872D71B2F69BE32004D8E80 /* Exceptions for "auraapp" folder in "auraapp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 28A5DCE92F62DF0F007332E1 /* auraapp */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		28A5DCEC2F62DF0F007332E1 /* auraapp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2872D71B2F69BE32004D8E80 /* Exceptions for "auraapp" folder in "auraapp" target */,
+			);
 			path = auraapp;
 			sourceTree = "<group>";
 		};
@@ -166,6 +179,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 28A5DCE12F62DF0F007332E1;
 			minimizedProjectReferenceProxies = 1;
@@ -334,6 +348,7 @@
 				DEVELOPMENT_TEAM = 6AU3YYUPV9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = auraapp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Aura: Habit Tracker & Planner";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -372,6 +387,7 @@
 				DEVELOPMENT_TEAM = 6AU3YYUPV9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = auraapp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Aura: Habit Tracker & Planner";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
