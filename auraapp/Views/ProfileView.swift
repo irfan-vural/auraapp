@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     // Uygulama içi ayarları cihazda tutmak için (Dark Mode vb.)
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("appLanguage") private var appLanguage = "en" // Varsayılan İngilizce ("en")
     @State private var selectedLanguage = "English"
     let languages = ["English", "Türkçe"]
 
@@ -47,10 +48,9 @@ struct ProfileView: View {
                     }
                     
                     // Dil Seçici
-                    Picker(selection: $selectedLanguage, label: Label("Language", systemImage: "globe")) {
-                        ForEach(languages, id: \.self) { lang in
-                            Text(lang).tag(lang)
-                        }
+                    Picker(selection: $appLanguage, label: Label("Language", systemImage: "globe")) {
+                        Text("English").tag("en")
+                        Text("Türkçe").tag("tr")
                     }
                 }
                 
