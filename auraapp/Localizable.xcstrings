@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "About & Support" : {
       "localizations" : {
         "tr" : {
@@ -10,6 +13,9 @@
           }
         }
       }
+    },
+    "Activity" : {
+
     },
     "Already have an account?" : {
       "localizations" : {
@@ -152,9 +158,6 @@
         }
       }
     },
-    "Hello, HealthView!" : {
-
-    },
     "Hello, todolist view" : {
 
     },
@@ -268,6 +271,9 @@
           }
         }
       }
+    },
+    "Steps Today" : {
+
     },
     "Succesful!" : {
       "localizations" : {
