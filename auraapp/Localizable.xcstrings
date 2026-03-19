@@ -4,6 +4,9 @@
     "%lld" : {
 
     },
+    "%lld%%" : {
+
+    },
     "About & Support" : {
       "localizations" : {
         "tr" : {
@@ -137,6 +140,9 @@
           }
         }
       }
+    },
+    "Goal: %lld steps" : {
+
     },
     "Habits" : {
       "localizations" : {

@@ -5,27 +5,36 @@ import Observation
 @Observable
 class HealthViewViewModel {
     var stepCount: Double = 0.0
+    var distance: Double = 0.0 // Metre cinsinden
+    var calories: Double = 0.0 // Kcal cinsinden
     var errorMessage = ""
     
-    // Apple'ın sağlık deposuna erişim anahtarımız
+    // Günlük adım hedefi (Şimdilik sabit, ileride ayarlardan çekebiliriz)
+    let stepGoal: Double = 10000.0
+    
     private let healthStore = HKHealthStore()
     
-    // 1. Kullanıcıdan izin isteme fonksiyonu
+    // İlerleyiş yüzdesi (0.0 - 1.0 arası)
+    var stepProgress: Double {
+        return min(stepCount / stepGoal, 1.0)
+    }
+    
     func requestAuthorization() {
-        // Cihaz HealthKit destekliyor mu? (iPad'lerde falan desteklenmeyebilir)
         guard HKHealthStore.isHealthDataAvailable() else {
             errorMessage = "HealthKit is not available on this device."
             return
         }
         
-        // Sadece "Adım Sayısı" verisini okumak istediğimizi belirtiyoruz
-        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
-        let typesToRead: Set = [stepType]
+        // Okumak istediğimiz veri tiplerini genişletiyoruz
+        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount),
+              let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning),
+              let caloriesType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) else { return }
+        
+        let typesToRead: Set = [stepType, distanceType, caloriesType]
         
         healthStore.requestAuthorization(toShare: nil, read: typesToRead) { [weak self] success, error in
             if success {
-                // İzin verildiyse bugünün adımlarını çek
-                self?.fetchTodaySteps()
+                self?.fetchAllData()
             } else {
                 DispatchQueue.main.async {
                     self?.errorMessage = "Permission denied."
@@ -34,25 +43,44 @@ class HealthViewViewModel {
         }
     }
     
-    // 2. Bugünün adım sayısını hesaplama fonksiyonu
+    private func fetchAllData() {
+        fetchTodaySteps()
+        fetchTodayDistance()
+        fetchTodayCalories()
+    }
+    
     private func fetchTodaySteps() {
-        guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
-        
-        // Sadece bugünün başlangıcından şu ana kadar olan adımları istiyoruz
+        fetchData(for: .stepCount) { self.stepCount = $0 }
+    }
+    
+    private func fetchTodayDistance() {
+        fetchData(for: .distanceWalkingRunning) { self.distance = $0 }
+    }
+    
+    private func fetchTodayCalories() {
+        fetchData(for: .activeEnergyBurned) { self.calories = $0 }
+    }
+    
+    // Genel veri çekme fonksiyonu (Tekrarı önler kanka)
+    private func fetchData(for identifier: HKQuantityTypeIdentifier, completion: @escaping (Double) -> Void) {
+        guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { return }
         let now = Date()
         let startOfDay = Calendar.current.startOfDay(for: now)
         let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
         
-        let query = HKStatisticsQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-            
+        let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
             guard let result = result, let sum = result.sumQuantity() else { return }
-            
             DispatchQueue.main.async {
-                // Sonucu Double (küsuratlı sayı) olarak değişkene aktarıyoruz
-                self.stepCount = sum.doubleValue(for: HKUnit.count())
+                // Adım için count, mesafe için meter, kalori için kilocalorie birimini kullanıyoruz
+                if identifier == .stepCount {
+                    completion(sum.doubleValue(for: HKUnit.count()))
+                } else if identifier == .distanceWalkingRunning {
+                    completion(sum.doubleValue(for: HKUnit.meter()))
+                } else {
+                    completion(sum.doubleValue(for: HKUnit.kilocalorie()))
+                }
             }
         }
-        
         healthStore.execute(query)
     }
 }

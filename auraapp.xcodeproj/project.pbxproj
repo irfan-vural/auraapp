@@ -352,7 +352,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = auraapp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Aura: Habit Tracker & Planner";
+				INFOPLIST_KEY_CFBundleDisplayName = Aura;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Aura günlük adım hedeflerini takip etmek için sağlık verilerine ihtiyaç duyar.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -393,7 +393,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = auraapp/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Aura: Habit Tracker & Planner";
+				INFOPLIST_KEY_CFBundleDisplayName = Aura;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "Aura günlük adım hedeflerini takip etmek için sağlık verilerine ihtiyaç duyar.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
