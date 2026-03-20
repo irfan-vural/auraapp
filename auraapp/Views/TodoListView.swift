@@ -82,10 +82,7 @@ struct TodoListView: View {
             }
             // --- YENİ EKLE EKRANI AÇILIŞI (SHEET) ---
             .sheet(isPresented: $viewModel.isShowingAddHabitView) {
-                // Şimdilik burası boş bir sayfa açacak, bir sonraki adımda içini dolduracağız
-                Text("New Habit Screen Coming Soon!")
-                    .font(.title)
-                    .fontWeight(.bold)
+                NewHabitView()
             }
             .onAppear {
                 // Sayfa ekrana geldiği an Firebase'den verileri çekmeye başla
