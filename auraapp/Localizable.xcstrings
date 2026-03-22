@@ -40,6 +40,15 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
+    "Choose a Color" : {
+
+    },
+    "Choose an Icon" : {
+
+    },
     "Confirm Password" : {
       "localizations" : {
         "tr" : {
@@ -104,6 +113,9 @@
         }
       }
     },
+    "e.g. Read 10 Pages" : {
+
+    },
     "Email Address" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -131,6 +143,9 @@
         }
       }
     },
+    "Error" : {
+
+    },
     "Full Name" : {
       "localizations" : {
         "tr" : {
@@ -142,6 +157,9 @@
       }
     },
     "Goal: %lld steps" : {
+
+    },
+    "Habit Name" : {
 
     },
     "Habits" : {
@@ -207,10 +225,13 @@
         }
       }
     },
-    "New Habit Screen Coming Soon!" : {
+    "New Habit" : {
 
     },
     "No habits yet." : {
+
+    },
+    "OK" : {
 
     },
     "Password" : {
@@ -249,6 +270,9 @@
           }
         }
       }
+    },
+    "Save" : {
+
     },
     "Sign in" : {
       "extractionState" : "manual",
