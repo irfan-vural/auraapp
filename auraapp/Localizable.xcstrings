@@ -40,6 +40,9 @@
         }
       }
     },
+    "AURA" : {
+
+    },
     "Cancel" : {
 
     },
@@ -350,6 +353,9 @@
           }
         }
       }
+    },
+    "Your Daily Focus" : {
+
     },
     "Your Habits" : {
 
