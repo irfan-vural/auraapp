@@ -118,7 +118,16 @@ struct HabitDetailView: View {
                                             .font(.title)
                                             .foregroundColor(.primary)
                                     }
+                                    // Slider'ın hemen sağına (artı butonunun yanına) eklenecek kod:
+                                    if viewModel.habit.todayProgress >= viewModel.habit.goalTargetValue {
+                                        Image(systemName: "flame.fill")
+                                            .foregroundColor(.orange)
+                                            .font(.title2)
+                                            // Tatlı bir büyüme animasyonu
+                                            .transition(.scale)
+                                    }
                                 }
+                                
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
                                 .cornerRadius(20)
