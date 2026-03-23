@@ -14,7 +14,9 @@ struct auraappApp: App {
     @AppStorage("appLanguage") private var appLanguage = "en"
     init(){
         FirebaseApp.configure()
+        NotificationManager.shared.requestAuthorization()
         checkAndSetInitialLanguage()
+        
     }
     var body: some Scene {
         WindowGroup {

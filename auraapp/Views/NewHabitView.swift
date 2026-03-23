@@ -225,7 +225,13 @@ struct NewHabitView: View {
                     DatePicker("Time", selection: $viewModel.reminderTime, displayedComponents: .hourAndMinute)
                         .padding()
                 }
-            }
+                Text("We will send you a notification!")
+                        .font(.footnote) // Bilgi metni olduğu için bir tık küçük ve şık durur
+                        .opacity(0.8)
+                        // İŞTE SİHİRLİ SATIR: Genişliği full yapıp yazıyı sola yaslıyor
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal) // Üstteki Toggle ile aynı dikey hizaya sokar
+                        .padding(.bottom, 15)             }
             .background(Color(.secondarySystemGroupedBackground))
             .cornerRadius(16)
         }

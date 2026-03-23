@@ -53,7 +53,7 @@ class HabitDetailViewViewModel {
     func deleteHabit(completion: @escaping (Bool) -> Void) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
-        
+        NotificationManager.shared.cancelNotification(for: habit.id)
         db.collection("users").document(userId).collection("habits").document(habit.id)
             .delete { error in
                 completion(error == nil)

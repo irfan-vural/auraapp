@@ -105,6 +105,14 @@ class NewHabitViewViewModel {
                     print("Error: \(error.localizedDescription)")
                     completion(false)
                 } else {
+                    if self.isReminderEnabled {
+                                            // Eğer hatırlatıcı açıksa, kullanıcının seçtiği saate alarm kur!
+                                            NotificationManager.shared.scheduleNotification(
+                                                for: newId,
+                                                title: self.title,
+                                                time: self.reminderTime
+                                            )
+                                        }
                     completion(true)
                 }
             }
