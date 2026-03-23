@@ -2,7 +2,6 @@ import SwiftUI
 
 struct TodoListView: View {
     @State var viewModel = TodoListViewViewModel()
-    
     // Bugünün tarihini şık bir şekilde formatlamak için
     private var formattedDate: String {
         let formatter = DateFormatter()
@@ -57,10 +56,18 @@ struct TodoListView: View {
                         } else {
                             // Görevler varsa kartları alt alta diz (LazyVStack performansı artırır)
                             LazyVStack(spacing: 16) {
+
                                 ForEach(viewModel.habits) { habit in
                                     HabitCardView(habit: habit)
                                         .padding(.horizontal, 20)
+                                        .onTapGesture {
+                                            // Karta tıklanınca detayı aç
+                                            viewModel.selectedHabit = habit
+                                        }
                                 }
+                            }.sheet(item: $viewModel.selectedHabit) { selected in
+                                HabitDetailView(viewModel: HabitDetailViewViewModel(habit: selected))
+                                    .presentationDetents([.large]) // iOS'a özel tam ekrana yakın çok şık açılış
                             }
                         }
                     }

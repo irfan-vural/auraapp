@@ -1,90 +1,112 @@
-//
-//  NewItemViewViewModel.swift
-//  auraapp
-//
-//  Created by İrfan Vural on 12.03.2026.
-//
-
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import Observation
+import SwiftUI
 
 @Observable
 class NewHabitViewViewModel {
-    var title = ""
-    var selectedIcon = "dumbbell.fill" // Varsayılan ikon
-    var selectedColorHex = "#FF9500" // Varsayılan renk (Turuncu)
-    
+    // --- AKIŞ KONTROLÜ ---
+    var currentStep = 1
+    let totalSteps = 4
     var showAlert = false
     var alertMessage = ""
     
-    // Kullanıcının seçebileceği ikonlar listesi
-    let icons = [
-        "dumbbell.fill", "figure.run", "figure.indoor.soccer", // Fitness & Spor
-        "book.fill", "laptopcomputer", "brain.head.profile", // Çalışma & Odak
-        "drop.fill", "moon.fill", "flame.fill", "heart.fill" // Sağlık & Genel
-    ]
+    // --- ADIM 1: TEMEL BİLGİLER ---
+    var title = ""
+    var selectedIcon = "figure.run"
+    var selectedColorHex = "#007AFF"
     
-    // Kullanıcının seçebileceği Aura renk paleti
-    let colors = [
-        "#FF9500", // Turuncu
-        "#FF2D55", // Pembe
-        "#AF52DE", // Mor
-        "#007AFF", // Mavi
-        "#34C759", // Yeşil
-        "#FFCC00"  // Sarı
-    ]
+    // --- ADIM 2: HEDEF (GOAL) ---
+    var isGoalEnabled = false // Görseldeki "Set a goal" toggle'ı
+    var habitType: HabitType = .classic
+    var targetValue: Double = 15.0
+    var selectedUnit = "min"
+    let units = ["min", "times", "pages", "liters", "hours"]
+    
+    // --- ADIM 3: ALT GÖREVLER (CHECKLIST) ---
+    var checklist: [ChecklistItem] = []
+    var newChecklistItemTitle = ""
+    
+    // --- ADIM 4: TEKRAR VE BİLDİRİM ---
+    var isCycleEnabled = true
+    var repeatCycle = "Daily"
+    var isReminderEnabled = false
+    var reminderTime = Date()
+    
+    // Sabit Seçenekler
+    let icons = ["figure.run", "dumbbell.fill", "book.fill", "laptopcomputer", "drop.fill", "moon.fill", "brain.head.profile"]
+    let colors = ["#FF9500", "#FF2D55", "#AF52DE", "#007AFF", "#34C759", "#FFCC00"]
     
     init() {}
     
-    func save(completion: @escaping (Bool) -> Void) {
-        guard canSave else {
-            completion(false)
+    // Adım İlerletme Mantığı
+    func nextStep() {
+        if currentStep == 1 && title.trimmingCharacters(in: .whitespaces).isEmpty {
+            alertMessage = "Lütfen alışkanlığına bir isim ver."
+            showAlert = true
             return
         }
         
-        // 1. Kullanıcıyı bul
+        if currentStep < totalSteps {
+            currentStep += 1
+        }
+    }
+    
+    func previousStep() {
+        if currentStep > 1 {
+            currentStep -= 1
+        }
+    }
+    
+    // Checklist'e eleman ekleme
+    func addChecklistItem() {
+        guard !newChecklistItemTitle.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        let item = ChecklistItem(title: newChecklistItemTitle, isCompleted: false)
+        checklist.append(item)
+        newChecklistItemTitle = "" // Input'u temizle
+    }
+    
+    // Kaydetme İşlemi (Firebase)
+    func save(completion: @escaping (Bool) -> Void) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
-        // 2. Yeni alışkanlık modelini oluştur (İleride eklenecek özellikleri şimdilik varsayılan yapıyoruz)
         let newId = UUID().uuidString
+        
+        // Eğer hedef açılmadıysa klasik tip sayılır
+        let finalType: HabitType = isGoalEnabled ? .counter : .classic
+        let finalTarget = isGoalEnabled ? targetValue : 1.0
+        let finalUnit = isGoalEnabled ? selectedUnit : ""
+        
         let newHabit = Habit(
             id: newId,
             title: title,
             createdAt: Date().timeIntervalSince1970,
             icon: selectedIcon,
             colorHex: selectedColorHex,
+            type: finalType,
+            goalTargetValue: finalTarget,
+            goalUnit: finalUnit,
+            todayProgress: 0.0,
+            checklist: checklist,
+            repeatCycle: isCycleEnabled ? repeatCycle : "None",
             currentStreak: 0,
             longestStreak: 0,
             lastCompletedDate: nil,
-            isReminderEnabled: false,
-            reminderTime: nil,
-            frequency: [1,2,3,4,5,6,7] // Her gün
+            isReminderEnabled: isReminderEnabled,
+            reminderTime: isReminderEnabled ? reminderTime.formatted(date: .omitted, time: .shortened) : nil,
+            frequency: [1,2,3,4,5,6,7]
         )
         
-        // 3. Veritabanına kaydet
         let db = Firestore.firestore()
-        db.collection("users")
-            .document(userId)
-            .collection("habits")
-            .document(newId)
+        db.collection("users").document(userId).collection("habits").document(newId)
             .setData(newHabit.asDictionary()) { error in
                 if let error = error {
-                    print("Error saving habit: \(error.localizedDescription)")
+                    print("Error: \(error.localizedDescription)")
                     completion(false)
                 } else {
-                    completion(true) // Başarılı!
+                    completion(true)
                 }
             }
-    }
-    
-    var canSave: Bool {
-        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
-            alertMessage = "Please enter a habit name."
-            showAlert = true
-            return false
-        }
-        return true
     }
 }
