@@ -1,12 +1,49 @@
 import SwiftUI
-
+import Charts
 struct HealthView: View {
     @State var viewModel = HealthViewViewModel()
-    
+    @AppStorage("dailyStepGoal") private var dailyStepGoal: Double = 10000.0
+        @State private var showingGoalAlert = false
+        @State private var newGoalString = ""
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                                            Text("This Week")
+                                                .font(.headline)
+                                                .foregroundColor(.primary)
+                                            
+                                            if viewModel.weeklySteps.isEmpty {
+                                                // Veri gelene kadar veya veri yoksa şık bir yüklenme/boşluk tasarımı
+                                                ProgressView()
+                                                    .frame(maxWidth: .infinity, minHeight: 150)
+                                            } else {
+                                                // APPLE'IN MUAZZAM GRAFİK MOTORU
+                                                Chart(viewModel.weeklySteps) { stepData in
+                                                    BarMark(
+                                                        x: .value("Day", stepData.date, unit: .day),
+                                                        y: .value("Steps", stepData.count)
+                                                    )
+                                                  
+                                                    .foregroundStyle(Color.orange.gradient)
+                                                    // Sütun köşelerini hafif yumuşatıyoruz
+                                                    .cornerRadius(6)
+                                                }
+                                                .frame(height: 180) // Grafiğin yüksekliği
+                                                .chartXAxis {
+                                                   
+                                                    AxisMarks(values: .stride(by: .day)) { value in
+                                                        AxisValueLabel(format: .dateTime.weekday(.abbreviated))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .padding()
+                                        .background(Color(.secondarySystemGroupedBackground))
+                                        .cornerRadius(20)
+                                        .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
                     // --- 1. ANA AKTİVİTE ÖZET KARTI (Dairesel Bar & Adım) ---
                     VStack {
                         HStack {

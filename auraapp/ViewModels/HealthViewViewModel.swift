@@ -1,14 +1,19 @@
 import Foundation
 import HealthKit
 import Observation
-
+// Grafikte göstereceğimiz her bir günün veri modeli
+struct DailyStep: Identifiable {
+    let id = UUID()
+    let date: Date
+    let count: Double
+}
 @Observable
 class HealthViewViewModel {
     var stepCount: Double = 0.0
     var distance: Double = 0.0 // Metre cinsinden
     var calories: Double = 0.0 // Kcal cinsinden
     var errorMessage = ""
-    
+    var weeklySteps: [DailyStep] = []
     // Günlük adım hedefi (Şimdilik sabit, ileride ayarlardan çekebiliriz)
     let stepGoal: Double = 10000.0
     
@@ -47,7 +52,47 @@ class HealthViewViewModel {
         fetchTodaySteps()
         fetchTodayDistance()
         fetchTodayCalories()
+        fetchWeeklySteps()
     }
+    private func fetchWeeklySteps() {
+            guard let stepType = HKQuantityType.quantityType(forIdentifier: .stepCount) else { return }
+            
+            let calendar = Calendar.current
+            let today = Date()
+            
+            // Bugünden 6 gün geriye gidiyoruz (Toplam 7 gün)
+            guard let endDate = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: today)),
+                  let startDate = calendar.date(byAdding: .day, value: -6, to: calendar.startOfDay(for: today)) else { return }
+            
+            // Veriyi "Günlük" (1 Day) periyotlarla böl diyoruz
+            var interval = DateComponents()
+            interval.day = 1
+            
+            let query = HKStatisticsCollectionQuery(
+                quantityType: stepType,
+                quantitySamplePredicate: nil,
+                options: .cumulativeSum,
+                anchorDate: startDate,
+                intervalComponents: interval
+            )
+            
+            query.initialResultsHandler = { [weak self] query, results, error in
+                guard let results = results else { return }
+                var tempSteps: [DailyStep] = []
+                
+                // Sonuçları tek tek dönüp bizim DailyStep objelerine çeviriyoruz
+                results.enumerateStatistics(from: startDate, to: endDate) { statistics, stop in
+                    let count = statistics.sumQuantity()?.doubleValue(for: HKUnit.count()) ?? 0.0
+                    tempSteps.append(DailyStep(date: statistics.startDate, count: count))
+                }
+                
+                DispatchQueue.main.async {
+                    self?.weeklySteps = tempSteps
+                }
+            }
+            
+            healthStore.execute(query)
+        }
     
     private func fetchTodaySteps() {
         fetchData(for: .stepCount) { self.stepCount = $0 }

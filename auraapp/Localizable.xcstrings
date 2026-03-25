@@ -18,6 +18,7 @@
 
     },
     "About & Support" : {
+      "extractionState" : "stale",
       "localizations" : {
         "tr" : {
           "stringUnit" : {
@@ -43,6 +44,9 @@
         }
       }
     },
+    "Are you sure you want to sign out?" : {
+
+    },
     "Aura" : {
       "localizations" : {
         "tr" : {
@@ -54,6 +58,9 @@
       }
     },
     "AURA" : {
+
+    },
+    "Aura: Daily Routine & Focus" : {
 
     },
     "Break your habit into smaller steps." : {
@@ -80,6 +87,9 @@
           }
         }
       }
+    },
+    "Contact Support" : {
+
     },
     "Create an Account" : {
       "extractionState" : "manual",
@@ -123,6 +133,9 @@
           }
         }
       }
+    },
+    "Day" : {
+
     },
     "Don't have an account?" : {
       "extractionState" : "manual",
@@ -282,6 +295,9 @@
         }
       }
     },
+    "Privacy Policy" : {
+
+    },
     "Profile" : {
       "localizations" : {
         "tr" : {
@@ -292,7 +308,11 @@
         }
       }
     },
+    "Rate Aura" : {
+
+    },
     "Rate the App" : {
+      "extractionState" : "stale",
       "localizations" : {
         "tr" : {
           "stringUnit" : {
@@ -351,6 +371,9 @@
         }
       }
     },
+    "Steps" : {
+
+    },
     "Steps Today" : {
 
     },
@@ -364,6 +387,9 @@
         }
       }
     },
+    "Support & Feedback" : {
+
+    },
     "System Settings" : {
       "localizations" : {
         "tr" : {
@@ -375,6 +401,9 @@
       }
     },
     "Tap the + button to start building your Aura." : {
+
+    },
+    "This Week" : {
 
     },
     "Time" : {
@@ -417,6 +446,9 @@
           }
         }
       }
+    },
+    "Your Aura Stats" : {
+
     },
     "Your Daily Focus" : {
 
