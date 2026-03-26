@@ -5,6 +5,7 @@
 //  Created by İrfan Vural on 12.03.2026.
 //
 import SwiftUI
+import StoreKit
 
 struct ProfileView: View {
     @State var viewModel = ProfileViewViewModel()
@@ -14,6 +15,7 @@ struct ProfileView: View {
     @AppStorage("appLanguage") private var appLanguage = "en" // Varsayılan İngilizce ("en")
     @State private var selectedLanguage = "English"
     let languages = ["English", "Türkçe"]
+    @Environment(\.requestReview) var requestReview
     
     private var userInitials: String {
         guard let firstChar = viewModel.userName.first else { return "A" }
@@ -88,7 +90,12 @@ struct ProfileView: View {
                 // --- 3. APP STORE VE DESTEK LİNKLERİ ---
                 Section(header: Text("Support & Feedback")) {
                     // Uygulamayı Değerlendir (Daha sonra Apple'ın StoreKit'ine bağlayacağız)
-                    Button(action: { /* Rate App action */ }) {
+                    Button(action: {
+                        
+                        FormRow_LinkItem(icon: "star.fill", color: .yellow, title: "Rate Aura") {
+                            requestReview()
+                        }
+                    }) {
                         HStack {
                             Image(systemName: "star.fill").foregroundColor(.yellow)
                             Text("Rate Aura").foregroundColor(.primary)
@@ -184,6 +191,38 @@ struct ProfileView: View {
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .center) // HStack içinde eşit alan
+        }
+    }
+}
+
+// Modern Liste Satırı (Linkler için kullandığımız o şık tasarım)
+struct FormRow_LinkItem: View {
+    let icon: String
+    let color: Color
+    let title: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 16) {
+                // İkon Hapı
+                Image(systemName: icon)
+                    .foregroundColor(color)
+                    .frame(width: 32, height: 32)
+                    .background(color.opacity(0.1))
+                    .clipShape(Circle())
+                
+                Text(title)
+                    .foregroundColor(.primary)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
+                    .font(.caption)
+            }
+            .padding(.horizontal)
+            .padding(.vertical, 10)
         }
     }
 }

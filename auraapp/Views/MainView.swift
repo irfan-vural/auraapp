@@ -4,18 +4,24 @@ import SwiftUI
 struct MainView: View {
     // MainViewViewModel hala duruyor, giriş durumunu takip ediyor
     @State var viewModel = MainViewViewModel()
-    
+    @AppStorage("hasSeenOnboarding") var hasSeenOnboarding: Bool = false
     // Splash Screen'in aktif olup olmadığını takip eden State
     @State private var isShowSplashScreen = true
 
     var body: some View {
         ZStack {
             // --- 1. ANA UYGULAMA MANTIĞI ---
-            if viewModel.showMainApp {
-                MainTabView(mainVM: viewModel)
-            } else {
-                LoginView(mainVM: viewModel)
-            }
+            if !hasSeenOnboarding {
+                            // Daha önce görmediyse Onboarding'i göster
+                            OnboardingView()
+                        } else {
+                            // Gördüyse normal akışa (Giriş yapılmışsa ana uygulama, yapılmamışsa login) devam et
+                            if viewModel.showMainApp {
+                                MainTabView(mainVM: viewModel)
+                            } else {
+                                LoginView(mainVM: viewModel)
+                            }
+                        }
             
             // --- 2. SPLASH SCREEN (KATMAN OLARAK ÜSTTE) ---
             if isShowSplashScreen {
