@@ -88,9 +88,6 @@
         }
       }
     },
-    "Contact Support" : {
-
-    },
     "Create an Account" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -295,9 +292,6 @@
         }
       }
     },
-    "Privacy Policy" : {
-
-    },
     "Profile" : {
       "localizations" : {
         "tr" : {
@@ -307,9 +301,6 @@
           }
         }
       }
-    },
-    "Rate Aura" : {
-
     },
     "Rate the App" : {
       "extractionState" : "stale",
@@ -389,9 +380,6 @@
           }
         }
       }
-    },
-    "Support & Feedback" : {
-
     },
     "System Settings" : {
       "localizations" : {

@@ -87,42 +87,39 @@ struct ProfileView: View {
                 }
                 
                 
-                // --- 3. APP STORE VE DESTEK LİNKLERİ ---
-                Section(header: Text("Support & Feedback")) {
-                    // Uygulamayı Değerlendir (Daha sonra Apple'ın StoreKit'ine bağlayacağız)
-                    Button(action: {
+                // --- 4. DESTEK & FEEDBACK LİNKLERİ ---
+                VStack(alignment: .leading, spacing: 8) {
+                    SectionHeader(title: "Support & Feedback")
+                    VStack(spacing: 0) {
                         
+                        // 1. UYGULAMAYI DEĞERLENDİR (Apple'ın 5 yıldız kutucuğunu açar)
                         FormRow_LinkItem(icon: "star.fill", color: .yellow, title: "Rate Aura") {
                             requestReview()
                         }
-                    }) {
-                        HStack {
-                            Image(systemName: "star.fill").foregroundColor(.yellow)
-                            Text("Rate Aura").foregroundColor(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.right").foregroundColor(.gray).font(.caption)
+                        
+                        Divider().padding(.leading, 50)
+                        
+                        // 2. BİZE ULAŞIN (Telefonun Mail uygulamasını açar)
+                        FormRow_LinkItem(icon: "envelope.fill", color: .blue, title: "Contact Support") {
+                            // Kendi destek mail adresini buraya yazabilirsin
+                            if let url = URL(string: "mailto:irfanvural.dev@gmail.com") {
+                                UIApplication.shared.open(url)
+                            }
                         }
-                    }
-                    
-                    // Bize Ulaşın (Mail açtıracağız)
-                    Button(action: { /* Contact action */ }) {
-                        HStack {
-                            Image(systemName: "envelope.fill").foregroundColor(.blue)
-                            Text("Contact Support").foregroundColor(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.right").foregroundColor(.gray).font(.caption)
+                        
+                        Divider().padding(.leading, 50)
+                        
+                        // 3. GİZLİLİK POLİTİKASI (Safari'de web siteni açar)
+                        FormRow_LinkItem(icon: "lock.shield.fill", color: .green, title: "Privacy Policy") {
+                            // İleride kendi gizlilik politikası linkini buraya ekleyeceksin
+                            if let url = URL(string: "https://www.freeprivacypolicy.com/live/6082fb0c-8e09-467b-98d3-63c1ec56b7fe") {
+                                UIApplication.shared.open(url)
+                            }
                         }
+                        
                     }
-                    
-                    // Gizlilik Politikası (Linke gidecek)
-                    Button(action: { /* Privacy Policy action */ }) {
-                        HStack {
-                            Image(systemName: "lock.shield.fill").foregroundColor(.green)
-                            Text("Privacy Policy").foregroundColor(.primary)
-                            Spacer()
-                            Image(systemName: "chevron.right").foregroundColor(.gray).font(.caption)
-                        }
-                    }
+                    .background(Color(.secondarySystemGroupedBackground))
+                    .cornerRadius(16)
                 }
                 
                 Section {
@@ -169,7 +166,18 @@ struct ProfileView: View {
     }
     
     
-    
+    struct SectionHeader: View {
+        let title: String
+        
+        var body: some View {
+            Text(title)
+                .font(.caption)
+                .fontWeight(.semibold)
+                .textCase(.uppercase) // Yazıyı otomatik BÜYÜK HARF yapar
+                .foregroundColor(.gray)
+                .padding(.leading, 4)
+        }
+    }
     struct CompactStatItem: View {
         let icon: String
         let color: Color
