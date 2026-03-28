@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "%lld/%lld %@" : {
       "localizations" : {
@@ -11,28 +18,44 @@
             "state" : "new",
             "value" : "%1$lld/%2$lld %3$@"
           }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld/%2$lld%3$@"
+          }
         }
       }
     },
     "%lld%%" : {
-
-    },
-    "About & Support" : {
-      "extractionState" : "stale",
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hakkında & Destek"
+            "value" : "%lld"
           }
         }
       }
     },
     "Activity" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktivite"
+          }
+        }
+      }
     },
     "Add new step..." : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni Adım Ekle"
+          }
+        }
+      }
     },
     "Already have an account?" : {
       "localizations" : {
@@ -45,7 +68,14 @@
       }
     },
     "Are you sure you want to sign out?" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Çıkış yapmak istediğinden emin misin?"
+          }
+        }
+      }
     },
     "Aura" : {
       "localizations" : {
@@ -58,25 +88,74 @@
       }
     },
     "AURA" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AURA"
+          }
+        }
+      }
     },
     "Aura: Daily Routine & Focus" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aura: Günlük Rutin & Odak"
+          }
+        }
+      }
     },
     "Break your habit into smaller steps." : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alışkanlığını küçük parçalara ayır."
+          }
+        }
+      }
     },
     "Cancel" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İptal"
+          }
+        }
+      }
     },
     "Checklist" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liste"
+          }
+        }
+      }
     },
     "Checklist (Optional)" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liste(İsteğe bağlı)"
+          }
+        }
+      }
     },
     "Color" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renk"
+          }
+        }
+      }
     },
     "Confirm Password" : {
       "localizations" : {
@@ -106,10 +185,24 @@
       }
     },
     "Cycle" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Döngü"
+          }
+        }
+      }
     },
     "Daily" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günlük"
+          }
+        }
+      }
     },
     "Daily Routine & ADHD Focus" : {
       "localizations" : {
@@ -132,7 +225,14 @@
       }
     },
     "Day" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gün"
+          }
+        }
+      }
     },
     "Don't have an account?" : {
       "extractionState" : "manual",
@@ -152,7 +252,14 @@
       }
     },
     "e.g. Read a book, Running..." : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditasyon, Kitap okuma vb."
+          }
+        }
+      }
     },
     "Email Address" : {
       "extractionState" : "manual",
@@ -192,13 +299,34 @@
       }
     },
     "Goal" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedef"
+          }
+        }
+      }
     },
     "Goal: " : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedef:"
+          }
+        }
+      }
     },
     "Goal: %lld steps" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedef: %lld adım"
+          }
+        }
+      }
     },
     "Habits" : {
       "localizations" : {
@@ -221,7 +349,14 @@
       }
     },
     "Icon" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İkon"
+          }
+        }
+      }
     },
     "Join Aura" : {
       "localizations" : {
@@ -264,16 +399,44 @@
       }
     },
     "Next" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonraki"
+          }
+        }
+      }
     },
     "No habits yet." : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Şimdilik bir alışkanlığın yok."
+          }
+        }
+      }
     },
     "OK" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tamam"
+          }
+        }
+      }
     },
     "Oops!" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops!"
+          }
+        }
+      }
     },
     "Password" : {
       "extractionState" : "manual",
@@ -302,34 +465,65 @@
         }
       }
     },
-    "Rate the App" : {
-      "extractionState" : "stale",
+    "Reminder" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uygulamayı Değerlendir"
+            "value" : "Hatırlatıcı"
           }
         }
       }
     },
-    "Reminder" : {
-
-    },
     "Repeat" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekrar "
+          }
+        }
+      }
     },
     "Repeat & Reminder" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekrar & Hatırlat"
+          }
+        }
+      }
     },
     "Save Habit" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alışkanlığı Kaydet"
+          }
+        }
+      }
     },
     "Set a cycle for your plan" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planın için bir döngü seç."
+          }
+        }
+      }
     },
     "Set a goal" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir hedef belirle"
+          }
+        }
+      }
     },
     "Sign in" : {
       "extractionState" : "manual",
@@ -353,7 +547,14 @@
       }
     },
     "Skip" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atla"
+          }
+        }
+      }
     },
     "Start building better habits today." : {
       "localizations" : {
@@ -366,10 +567,24 @@
       }
     },
     "Steps" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adımlar"
+          }
+        }
+      }
     },
     "Steps Today" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bugünkü Adımlar"
+          }
+        }
+      }
     },
     "Succesful!" : {
       "localizations" : {
@@ -381,24 +596,35 @@
         }
       }
     },
-    "System Settings" : {
+    "Tap the + button to start building your Aura." : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sistem Ayarları"
+            "value" : "+ butonuna bas ve Auranı oluşturmaya başla."
           }
         }
       }
     },
-    "Tap the + button to start building your Aura." : {
-
-    },
     "This Week" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu Hafta"
+          }
+        }
+      }
     },
     "Time" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaman"
+          }
+        }
+      }
     },
     "Türkçe" : {
       "localizations" : {
@@ -411,22 +637,64 @@
       }
     },
     "Unit" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unit"
+          }
+        }
+      }
     },
     "Value" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Değer"
+          }
+        }
+      }
     },
     "View Habit" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alışkanlığı Görüntüle"
+          }
+        }
+      }
     },
     "We will send you a notification!" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sana bir bildirim göndereceğiz!"
+          }
+        }
+      }
     },
     "Weekly" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haftalık"
+          }
+        }
+      }
     },
     "What do you want to build?" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne oluşturmak istersin?"
+          }
+        }
+      }
     },
     "You Are All Set! Welcome To AURA" : {
       "localizations" : {
@@ -438,14 +706,25 @@
         }
       }
     },
-    "Your Aura Stats" : {
-
-    },
     "Your Daily Focus" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Günlük Odağın"
+          }
+        }
+      }
     },
     "Your Habits" : {
-
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alışkanlıkların"
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

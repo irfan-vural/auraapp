@@ -54,7 +54,9 @@ struct ProfileView: View {
                 }
                 
                 // --- 2. İSTATİSTİK PANOSU (STATS BOARD) ---
-                Section(header: Text("Your Aura Stats")) {
+                Section() {
+                    SectionHeader(title: "Your Aura Stats")
+
                     HStack(spacing: 0) {
                         // Küçültülmüş İstatistik Elemanları
                         CompactStatItem(icon: "list.bullet.clipboard.fill", color: .green, title: "Habits", value: "\(viewModel.totalHabits)")
@@ -73,7 +75,9 @@ struct ProfileView: View {
                     .cornerRadius(16)
                     
                 }
-                Section(header: Text("System Settings")) {
+                Section() {
+                    SectionHeader(title: "System Settings")
+
                     // Tema Değiştirici
                     Toggle(isOn: $isDarkMode) {
                         Label("Dark Mode", systemImage: "moon.fill")
@@ -122,7 +126,7 @@ struct ProfileView: View {
                     .cornerRadius(16)
                 }
                 
-                Section {
+                Section {   
                     Button(action: {
                         // Direkt çıkış yapmak yerine uyarı penceresini tetikliyoruz
                         showingLogoutConfirmation = true
