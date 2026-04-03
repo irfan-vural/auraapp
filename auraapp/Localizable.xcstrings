@@ -167,6 +167,27 @@
         }
       }
     },
+    "Contact Support" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bize Ulaşın"
+          }
+        }
+      }
+    },
+    "Create Account" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesap Oluştur"
+          }
+        }
+      }
+    },
     "Create an Account" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -398,6 +419,17 @@
         }
       }
     },
+    "New Habit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yeni Alışkanlık"
+          }
+        }
+      }
+    },
     "Next" : {
       "localizations" : {
         "tr" : {
@@ -455,12 +487,34 @@
         }
       }
     },
+    "Privacy Policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gizlilik Sözleşmesi"
+          }
+        }
+      }
+    },
     "Profile" : {
       "localizations" : {
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Profil"
+          }
+        }
+      }
+    },
+    "Rate Aura" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aura’yı Oylayın"
           }
         }
       }
@@ -592,6 +646,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Başarılı!"
+          }
+        }
+      }
+    },
+    "SUPPORT & FEEDBACK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destek ve Geri Bildirim"
+          }
+        }
+      }
+    },
+    "SYSTEM SETTİNGS" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SİSTEM AYARLARI"
           }
         }
       }

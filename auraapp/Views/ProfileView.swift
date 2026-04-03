@@ -67,7 +67,7 @@ struct ProfileView: View {
                             .frame(width: 1, height: 30)
                             .padding(.horizontal, 10)
                         
-                        CompactStatItem(icon: "flame.fill", color: .orange, title: "Streak", value: "\(viewModel.longestStreak)")
+                        CompactStatItem(icon: "flame.fill", color: .orange, title: "Longest Streak", value: "\(viewModel.longestStreak)")
                     }
                     .padding(.vertical, 4) // Dikey boşluk azaltıldı
                     .frame(maxWidth: .infinity)
@@ -236,6 +236,7 @@ struct FormRow_LinkItem: View {
             .padding(.horizontal)
             .padding(.vertical, 10)
         }
+        .buttonStyle(.plain)
     }
 }
 #Preview {

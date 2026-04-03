@@ -15,6 +15,7 @@ struct auraappApp: App {
     init(){
         FirebaseApp.configure()
         NotificationManager.shared.requestAuthorization()
+        NotificationManager.shared.scheduleDailyMorningNotification()
         checkAndSetInitialLanguage()
         
     }

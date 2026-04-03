@@ -98,6 +98,7 @@ struct OnboardingView: View {
         withAnimation(.easeOut(duration: 0.3)) {
             hasSeenOnboarding = true
         }
+        NotificationManager.shared.scheduleDailyMorningNotification()
         let impact = UIImpactFeedbackGenerator(style: .medium)
         impact.impactOccurred()
     }

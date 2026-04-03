@@ -16,6 +16,32 @@ class NotificationManager {
             }
         }
     }
+    // NotificationManager.swift içine eklenecek:
+
+    func scheduleDailyMorningNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Günaydın! ✨"
+        content.body = "Aura'nı inşa etmeye başla. Bugün harika geçecek!"
+        content.sound = .default
+        
+        // Saat 08:30 ayarı
+        var dateComponents = DateComponents()
+        dateComponents.hour = 8
+        dateComponents.minute = 30
+        
+        // Her gün tekrarlanacak şekilde tetikleyici (trigger) oluştur
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        // İstek oluştur (ID sabit olduğu için her seferinde üzerine yazar, kopya oluşturmaz)
+        let request = UNNotificationRequest(identifier: "daily_morning_aura", content: content, trigger: trigger)
+        
+        // iOS'a teslim et
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("Sabah bildirimi kurulamadı: \(error.localizedDescription)")
+            }
+        }
+    }
     
     // 2. ALARMI (BİLDİRİMİ) KURMA
     func scheduleNotification(for habitId: String, title: String, time: Date) {
