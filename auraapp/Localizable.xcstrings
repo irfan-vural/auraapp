@@ -255,6 +255,17 @@
         }
       }
     },
+    "Details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detaylar"
+          }
+        }
+      }
+    },
     "Don't have an account?" : {
       "extractionState" : "manual",
       "localizations" : {

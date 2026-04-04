@@ -21,6 +21,37 @@ class TodoListViewViewModel {
     
     init() {}
     
+    
+    // SİHİRLİ SÜZGEÇ: Gün dönümlerini ve kırılan serileri kontrol eder
+        private func checkAndResetDailyGoals(habits: [Habit]) {
+            guard let userId = Auth.auth().currentUser?.uid else { return }
+            let db = Firestore.firestore()
+            let calendar = Calendar.current
+            
+            for habit in habits {
+                // Sadece günlük (Daily) görevleri denetle
+                guard habit.repeatCycle == "Daily" else { continue }
+                
+                var updates: [String: Any] = [:]
+                // Eğer daha hiç yapılmamışsa, çok eski bir tarih varsay
+                let lastDate = habit.lastCompletedDate.map { Date(timeIntervalSince1970: $0) } ?? Date.distantPast
+                // KURAL 1: Eğer son yapılma tarihi "Bugün" değilse, bugünün ilerlemesini (progress) sıfırla
+                if !calendar.isDateInToday(lastDate) && habit.todayProgress > 0 {
+                    updates["todayProgress"] = 0
+                }
+                
+                // KURAL 2: Eğer "Bugün" de yapılmadı, "Dün" de yapılmadıysa seri BOZULMUŞTUR!
+                if !calendar.isDateInToday(lastDate) && !calendar.isDateInYesterday(lastDate) && habit.currentStreak > 0 {
+                    updates["currentStreak"] = 0
+                }
+                
+                // Eğer yapılacak bir güncelleme varsa Firebase'e yaz
+                if !updates.isEmpty {
+                    db.collection("users").document(userId).collection("habits").document(habit.id)
+                        .updateData(updates)
+                }
+            }
+        }
     // Firebase'i anlık dinleyen sihirli fonksiyon
     func fetchHabits() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -30,6 +61,12 @@ class TodoListViewViewModel {
             .order(by: "createdAt", descending: false) // Eskiden yeniye sırala
             .addSnapshotListener { [weak self] snapshot, error in
                 guard let documents = snapshot?.documents, error == nil else { return }
+                let fetchedHabits = documents.compactMap { try? $0.data(as: Habit.self) }
+                self?.checkAndResetDailyGoals(habits: fetchedHabits)
+                                
+                DispatchQueue.main.async {
+                self?.habits = fetchedHabits
+                }
                 
                 // Gelen karmaşık JSON verisini bizim o zengin Habit modeline dönüştürüyoruz
                 self?.habits = documents.compactMap { doc in
@@ -76,5 +113,8 @@ class TodoListViewViewModel {
                     )
                 }
             }
+        
+        
     }
+    
 }

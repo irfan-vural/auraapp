@@ -56,7 +56,7 @@ struct NewHabitView: View {
                     .padding(.bottom, 10)
                 }
             }
-            .navigationTitle(viewModel.currentStep == 1 ? "New Habit" : viewModel.title.isEmpty ? "Details" : viewModel.title)
+            .navigationTitle(viewModel.currentStep == 1 ? String(localized: "New Habit"): viewModel.title.isEmpty ? String(localized: "Details") : viewModel.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
