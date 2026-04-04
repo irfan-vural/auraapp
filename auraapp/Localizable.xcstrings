@@ -419,6 +419,16 @@
         }
       }
     },
+    "Longest Streak" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En Uzun Streak"
+          }
+        }
+      }
+    },
     "New Habit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -650,6 +660,16 @@
         }
       }
     },
+    "Support & Feedback" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Destek ve Geri Bildirim"
+          }
+        }
+      }
+    },
     "Support& Feedback" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -778,6 +798,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Her Şey Hazır! AURA’ya Hoşgeldin"
+          }
+        }
+      }
+    },
+    "Your Aura Stats" : {
+      "localizations" : {
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aura İstatistiklerin"
           }
         }
       }

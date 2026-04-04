@@ -171,7 +171,7 @@ struct ProfileView: View {
     
     
     struct SectionHeader: View {
-        let title: String
+        let title: LocalizedStringKey
         
         var body: some View {
             Text(title)
@@ -185,7 +185,7 @@ struct ProfileView: View {
     struct CompactStatItem: View {
         let icon: String
         let color: Color
-        let title: String
+        let title: LocalizedStringKey
         let value: String
         
         var body: some View {

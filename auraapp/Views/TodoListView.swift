@@ -2,12 +2,18 @@ import SwiftUI
 
 struct TodoListView: View {
     @State var viewModel = TodoListViewViewModel()
+    @AppStorage("appLanguage") private var appLanguage = "en"
     // Bugünün tarihini şık bir şekilde formatlamak için
-    private var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMMM, EEEE" // Örn: "20 March, Friday"
-        return formatter.string(from: Date())
-    }
+    // Bugünün tarihini şık bir şekilde formatlamak için
+        private var formattedDate: String {
+            let formatter = DateFormatter()
+            
+            // SİHİRLİ SATIR: Uygulama dili "tr" ise Türkçe, "en" ise İngilizce formatla
+            formatter.locale = Locale(identifier: appLanguage)
+            
+            formatter.dateFormat = "d MMMM, EEEE" // Örn: "20 Mart, Cuma"
+            return formatter.string(from: Date())
+        }
     
     var body: some View {
         NavigationStack {
