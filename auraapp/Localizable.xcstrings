@@ -650,7 +650,7 @@
         }
       }
     },
-    "SUPPORT & FEEDBACK" : {
+    "Support& Feedback" : {
       "extractionState" : "manual",
       "localizations" : {
         "tr" : {
@@ -661,7 +661,7 @@
         }
       }
     },
-    "SYSTEM SETTİNGS" : {
+    "System Settings" : {
       "extractionState" : "manual",
       "localizations" : {
         "tr" : {

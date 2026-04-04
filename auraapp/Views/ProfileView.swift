@@ -211,7 +211,7 @@ struct ProfileView: View {
 struct FormRow_LinkItem: View {
     let icon: String
     let color: Color
-    let title: String
+    let title: LocalizedStringKey
     let action: () -> Void
     
     var body: some View {
